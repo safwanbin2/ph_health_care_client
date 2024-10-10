@@ -10,7 +10,7 @@ const Navbar = () => {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Typography variant="h5" component="h1" fontWeight={600}>
+        <Typography variant="h5" component={Link} href={"/"} fontWeight={600}>
           P
           <Box component="span" color="primary.main">
             H
