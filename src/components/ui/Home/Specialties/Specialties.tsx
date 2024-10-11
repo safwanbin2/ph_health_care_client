@@ -1,5 +1,6 @@
 import { TResponse } from "@/interfaces";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import SpecialtyCard from "./SpecialtyCard";
 
 const Specialties = async () => {
   const res = await fetch(`http://localhost:5000/api/v1/specialties`, {
@@ -12,7 +13,11 @@ const Specialties = async () => {
   return (
     <>
       <Container>
-        <Box>
+        <Box
+          sx={{
+            marginY: 4,
+          }}
+        >
           <Box
             sx={{
               margin: "24px 0",
@@ -25,13 +30,25 @@ const Specialties = async () => {
               Find experienced doctors across all specialties
             </Typography>
           </Box>
-          <Box>
+          <Stack direction="row" gap={4}>
             {specialties?.data?.length &&
               specialties?.data.map((specialty) => (
-                <div key={specialty.id} specialty={specialty}>
-                  {specialty.title}
-                </div>
+                <SpecialtyCard key={specialty.id} specialty={specialty} />
               ))}
+          </Stack>
+          <Box
+            sx={{
+              textAlign: "center",
+            }}
+          >
+            <Button
+              sx={{
+                marginTop: "24px",
+              }}
+              variant="outlined"
+            >
+              View All
+            </Button>
           </Box>
         </Box>
       </Container>
