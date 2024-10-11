@@ -18,6 +18,7 @@ const Hero = () => {
       <Box
         sx={{
           display: "flex",
+          flex: 1,
           flexDirection: "column",
           gap: "16px",
         }}
@@ -25,7 +26,7 @@ const Hero = () => {
         <Box
           sx={{
             position: "absolute",
-            width: "600px",
+            width: "100%",
             top: "-40px",
           }}
         >
@@ -48,7 +49,6 @@ const Hero = () => {
           sx={{
             fontWeight: "500",
             fontSize: "16px",
-            width: "50%",
           }}
           component="p"
           variant="h6"
@@ -69,7 +69,80 @@ const Hero = () => {
           </Button>
         </Box>
       </Box>
-      <Box>Left</Box>
+      <Box
+        sx={{
+          position: "relative",
+        }}
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            top: "-40px",
+            left: "150px",
+          }}
+        >
+          <Image width={100} height={100} src={assets.svgs.arrow} alt="arrow" />
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "20px",
+          }}
+        >
+          <Box
+            sx={{
+              marginTop: "30px",
+            }}
+          >
+            <Image
+              height={250}
+              width={220}
+              src={assets.images.doctor1}
+              alt="doctor1"
+            />
+          </Box>
+          <Box>
+            <Image
+              height={230}
+              width={220}
+              src={assets.images.doctor2}
+              alt="doctor2"
+            />
+          </Box>
+        </Box>
+        <Box>
+          <Box
+            sx={{
+              position: "absolute",
+              bottom: "-20px",
+              left: "90px",
+            }}
+          >
+            <Image
+              height={230}
+              width={210}
+              src={assets.images.doctor3}
+              alt="doctor3"
+            />
+          </Box>
+          <Box
+            sx={{
+              position: "absolute",
+              bottom: "-50px",
+              right: "0px",
+              zIndex: "-1",
+            }}
+          >
+            <Image
+              height={150}
+              width={150}
+              src={assets.images.stethoscope}
+              alt="stethoscope"
+            />
+          </Box>
+        </Box>
+      </Box>
     </Container>
   );
 };
