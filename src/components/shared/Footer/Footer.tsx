@@ -1,7 +1,6 @@
 import { Box, Container, Stack, Typography } from "@mui/material";
 import Image from "next/image";
-import Link from "next/link";
-import facebook from "@/assets/icons/facebook.png";
+import facebook from "@/assets/landing_page/facebook.png";
 
 const Footer = () => {
   return (
