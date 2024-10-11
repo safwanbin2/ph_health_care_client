@@ -6,16 +6,18 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { TDoctor } from "@/interfaces";
 import { Grid, Stack } from "@mui/material";
+import Image from "next/image";
 
 const TopRatedDoctorCard = ({ doctor }: { doctor: TDoctor }) => {
   const { profilePhoto, name } = doctor;
   return (
     <Grid item md={4}>
-      <Card sx={{ maxWidth: 345 }}>
-        <CardMedia
-          sx={{ height: 250 }}
-          image={profilePhoto}
-          title="doctor image"
+      <Card>
+        <Image
+          src={profilePhoto}
+          alt="doctor image"
+          width={1000}
+          height={1000}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
