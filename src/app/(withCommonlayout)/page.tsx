@@ -3,6 +3,7 @@ import Specialties from "@/components/ui/Home/Specialties/Specialties";
 import TopRatedDoctors from "@/components/ui/Home/TopRatedDoctors/TopRatedDoctors";
 import React from "react";
 import WhyChooseUs from "../../components/ui/Home/WhyChooseUs/WhyChooseUs";
+import HowItWorks from "@/components/ui/Home/HowItWorks/HowItWorks";
 
 const HomePage = () => {
   return (
@@ -11,6 +12,7 @@ const HomePage = () => {
       <Specialties />
       <TopRatedDoctors />
       <WhyChooseUs />
+      <HowItWorks />
     </>
   );
 };
