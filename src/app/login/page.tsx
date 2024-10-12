@@ -18,6 +18,7 @@ const LoginPage = () => {
         sx={{
           justifyContent: "center",
           alignItems: "center",
+          minHeight: "100vh",
         }}
       >
         <Box
@@ -26,7 +27,6 @@ const LoginPage = () => {
             width: "100%",
             p: 5,
             boxShadow: 1,
-            mt: 10,
             borderRadius: 1,
           }}
         >
@@ -81,7 +81,7 @@ const LoginPage = () => {
               </Box>
               <Button fullWidth={true}>LOGIN</Button>
               <Typography fontWeight={400} color="gray">
-                Don't have an account?{" "}
+                Don&apos;t have an account?{" "}
                 <Link href="/register" className="text-blue-400 font-semibold">
                   Create an account
                 </Link>

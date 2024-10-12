@@ -18,6 +18,7 @@ const RegisterPage = () => {
         sx={{
           justifyContent: "center",
           alignItems: "center",
+          minHeight: "100vh",
         }}
       >
         <Box
@@ -26,7 +27,6 @@ const RegisterPage = () => {
             width: "100%",
             p: 5,
             boxShadow: 1,
-            mt: 10,
             borderRadius: 1,
           }}
         >
