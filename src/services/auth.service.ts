@@ -16,3 +16,14 @@ export const getUserInfo = () => {
     role: decoded?.role.toLowerCase(),
   };
 };
+
+export const isLoggedIn = () => {
+  const token = localStorage.getItem("accessToken");
+  return !!token;
+};
+
+export const removeUser = () => {
+  const token = localStorage.getItem("accessToken");
+  if (!token) return;
+  return localStorage.removeItem("accessToken");
+};
