@@ -1,9 +1,15 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
+import HowItWorksGrid from "./HowItWorksGrid";
 
 const HowItWorks = () => {
   return (
     <>
-      <Container className="space-y-10">
+      <Container
+        className="space-y-10"
+        sx={{
+          my: 5,
+        }}
+      >
         <Box
           className="space-y-2"
           sx={{
@@ -27,14 +33,7 @@ const HowItWorks = () => {
             top-quality surgery facilities right here.
           </Typography>
         </Box>
-        <Grid container spacing={5}>
-          <Grid item md={6}>
-            left
-          </Grid>
-          <Grid item md={6}>
-            right
-          </Grid>
-        </Grid>
+        <HowItWorksGrid />
         <Box>3</Box>
       </Container>
     </>
