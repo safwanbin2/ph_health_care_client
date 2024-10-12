@@ -112,17 +112,17 @@ const WhyChooseUs = () => {
               }}
             >
               <Image
-                src={whyChooseUsConent[0].image}
+                src={whyChooseUsConent[1].image}
                 alt="award image"
                 width={50}
               />
             </Box>
             <Box>
               <Typography variant="h5" component="h6" mb={1}>
-                {whyChooseUsConent[0].title}
+                {whyChooseUsConent[1].title}
               </Typography>
               <Typography color="gray" fontSize={14} fontWeight={300}>
-                {whyChooseUsConent[0].description}
+                {whyChooseUsConent[1].description}
               </Typography>
             </Box>
           </Box>
@@ -145,17 +145,17 @@ const WhyChooseUs = () => {
               }}
             >
               <Image
-                src={whyChooseUsConent[0].image}
+                src={whyChooseUsConent[2].image}
                 alt="award image"
                 width={50}
               />
             </Box>
             <Box>
               <Typography variant="h5" component="h6" mb={1}>
-                {whyChooseUsConent[0].title}
+                {whyChooseUsConent[2].title}
               </Typography>
               <Typography color="gray" fontSize={14} fontWeight={300}>
-                {whyChooseUsConent[0].description}
+                {whyChooseUsConent[2].description}
               </Typography>
             </Box>
           </Box>
@@ -178,17 +178,17 @@ const WhyChooseUs = () => {
               }}
             >
               <Image
-                src={whyChooseUsConent[0].image}
+                src={whyChooseUsConent[3].image}
                 alt="award image"
                 width={50}
               />
             </Box>
             <Box>
               <Typography variant="h5" component="h6" mb={1}>
-                {whyChooseUsConent[0].title}
+                {whyChooseUsConent[3].title}
               </Typography>
               <Typography color="gray" fontSize={14} fontWeight={300}>
-                {whyChooseUsConent[0].description}
+                {whyChooseUsConent[3].description}
               </Typography>
             </Box>
           </Box>
