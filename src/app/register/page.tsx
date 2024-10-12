@@ -13,6 +13,7 @@ import assets from "@/assets";
 import Image from "next/image";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { modifyPayload } from "@/utils/modifyPayload";
 
 const RegisterPage = () => {
   interface IPatientData {
@@ -27,8 +28,8 @@ const RegisterPage = () => {
 
   const { register, handleSubmit, watch } = useForm<IPatientData>();
 
-  const handleCreatePatient: SubmitHandler<IPatientData> = (data) => {
-    console.log(data);
+  const handleCreatePatient: SubmitHandler<IPatientData> = (values) => {
+    const data = modifyPayload(values);
   };
 
   return (
