@@ -37,10 +37,8 @@ const HowItWorksGrid = () => {
         <Image src={doctor} alt="doctor image on how it works" width={1000} />
       </Grid>
       <Grid item md={6}>
-        <Grid container spacing={2}>
-          <Grid
-            item
-            md={6}
+        <Box className="grid grid-cols-2 gap-5">
+          <Box
             sx={{
               p: 2,
               border: "1px solid rgba(25, 25, 25, .1)",
@@ -76,10 +74,8 @@ const HowItWorksGrid = () => {
                 {howItWorksContent[0].description}
               </Typography>
             </Box>
-          </Grid>
-          <Grid
-            item
-            md={6}
+          </Box>
+          <Box
             sx={{
               p: 2,
               border: "1px solid rgba(25, 25, 25, .1)",
@@ -115,10 +111,8 @@ const HowItWorksGrid = () => {
                 {howItWorksContent[0].description}
               </Typography>
             </Box>
-          </Grid>
-          <Grid
-            item
-            md={6}
+          </Box>
+          <Box
             sx={{
               p: 2,
               border: "1px solid rgba(25, 25, 25, .1)",
@@ -154,10 +148,8 @@ const HowItWorksGrid = () => {
                 {howItWorksContent[0].description}
               </Typography>
             </Box>
-          </Grid>
-          <Grid
-            item
-            md={6}
+          </Box>
+          <Box
             sx={{
               p: 2,
               border: "1px solid rgba(25, 25, 25, .1)",
@@ -193,8 +185,8 @@ const HowItWorksGrid = () => {
                 {howItWorksContent[0].description}
               </Typography>
             </Box>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </Grid>
     </Grid>
   );
