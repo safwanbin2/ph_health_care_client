@@ -14,8 +14,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { modifyPayload } from "@/utils/modifyPayload";
+import { registerPatient } from "@/services/actions/registerPatient";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { LoadingButton } from "@mui/lab";
 
 const RegisterPage = () => {
+  const router = useRouter();
   interface IPatientData {
     password: string;
     patient: {
@@ -27,9 +33,23 @@ const RegisterPage = () => {
   }
 
   const { register, handleSubmit, watch } = useForm<IPatientData>();
+  const [loading, setLoading] = useState(false);
 
-  const handleCreatePatient: SubmitHandler<IPatientData> = (values) => {
-    const data = modifyPayload(values);
+  const handleCreatePatient: SubmitHandler<IPatientData> = async (values) => {
+    setLoading(true);
+    const patientData = modifyPayload(values);
+    try {
+      const res = await registerPatient(patientData);
+      if (res.success) {
+        setLoading(false);
+        toast.success(res?.message);
+        router.push("/login");
+      }
+    } catch (error) {
+      toast.error(error?.message);
+      setLoading(false);
+      console.error(error);
+    }
   };
 
   return (
@@ -78,7 +98,9 @@ const RegisterPage = () => {
                     label="Name"
                     type="text"
                     size="small"
-                    {...register("patient.name")}
+                    {...register("patient.name", {
+                      required: true,
+                    })}
                   />
                 </Grid>
                 <Grid item md={6}>
@@ -87,7 +109,9 @@ const RegisterPage = () => {
                     label="Email"
                     type="email"
                     size="small"
-                    {...register("patient.email")}
+                    {...register("patient.email", {
+                      required: true,
+                    })}
                   />
                 </Grid>
                 <Grid item md={6}>
@@ -96,7 +120,9 @@ const RegisterPage = () => {
                     label="Password"
                     type="password"
                     size="small"
-                    {...register("password")}
+                    {...register("password", {
+                      required: true,
+                    })}
                   />
                 </Grid>
                 <Grid item md={6}>
@@ -105,7 +131,9 @@ const RegisterPage = () => {
                     label="Contact Number"
                     type="tel"
                     size="small"
-                    {...register("patient.contactNumber")}
+                    {...register("patient.contactNumber", {
+                      required: true,
+                    })}
                   />
                 </Grid>
                 <Grid item md={6}>
@@ -114,13 +142,22 @@ const RegisterPage = () => {
                     label="Address"
                     type="text"
                     size="small"
-                    {...register("patient.address")}
+                    {...register("patient.address", {
+                      required: true,
+                    })}
                   />
                 </Grid>
               </Grid>
-              <Button type="submit" fullWidth={true}>
-                REGISTER
-              </Button>
+              {loading ? (
+                <LoadingButton loading fullWidth={true} variant="outlined">
+                  Submit
+                </LoadingButton>
+              ) : (
+                <Button type="submit" fullWidth={true}>
+                  REGISTER
+                </Button>
+              )}
+
               <Typography fontWeight={400} color="gray">
                 Do you already have an account?{" "}
                 <Link href="/login" className="text-blue-400 font-semibold">
