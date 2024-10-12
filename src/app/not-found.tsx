@@ -1,8 +1,10 @@
+import Image from "next/image";
+
 const NotFoundPage = () => {
   return (
-    <div>
-      <h2>Page not found! 404</h2>
-    </div>
+    <>
+      <div>404! not found</div>
+    </>
   );
 };
 

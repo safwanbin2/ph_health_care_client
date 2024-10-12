@@ -17,6 +17,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { LoadingButton } from "@mui/lab";
 import { loginUser } from "@/services/actions/loginUser";
 import { toast } from "sonner";
+import { storeUserInfo } from "@/services/storeUserInfo";
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
   interface IUserLoginPayload {
@@ -24,6 +26,7 @@ const LoginPage = () => {
     password: string;
   }
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const { register, handleSubmit, watch } = useForm<IUserLoginPayload>();
 
@@ -31,9 +34,10 @@ const LoginPage = () => {
     setLoading(true);
     try {
       const res = await loginUser(values);
-      console.log(res);
       if (res.success) {
         toast.success(res?.message);
+        storeUserInfo(res?.data?.accessToken);
+        router.push("/");
       }
     } catch (error) {
       console.error(error);
