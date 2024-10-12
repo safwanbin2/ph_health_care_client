@@ -28,6 +28,7 @@ const Hero = () => {
             position: "absolute",
             width: "100%",
             top: "-40px",
+            zIndex: -1,
           }}
         >
           <Image src={assets.svgs.grid} alt="grid image" />
