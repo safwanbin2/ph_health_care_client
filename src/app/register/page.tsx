@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Box,
   Button,
@@ -10,8 +12,25 @@ import {
 import assets from "@/assets";
 import Image from "next/image";
 import Link from "next/link";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 const RegisterPage = () => {
+  interface IPatientData {
+    password: string;
+    patient: {
+      name: string;
+      email: string;
+      address: string;
+      contactNumber: string;
+    };
+  }
+
+  const { register, handleSubmit, watch } = useForm<IPatientData>();
+
+  const handleCreatePatient: SubmitHandler<IPatientData> = (data) => {
+    console.log(data);
+  };
+
   return (
     <Container>
       <Stack
@@ -30,7 +49,7 @@ const RegisterPage = () => {
             borderRadius: 1,
           }}
         >
-          <form>
+          <form onSubmit={handleSubmit(handleCreatePatient)}>
             <Stack
               sx={{
                 justifyContent: "center",
@@ -58,6 +77,7 @@ const RegisterPage = () => {
                     label="Name"
                     type="text"
                     size="small"
+                    {...register("patient.name")}
                   />
                 </Grid>
                 <Grid item md={6}>
@@ -66,6 +86,7 @@ const RegisterPage = () => {
                     label="Email"
                     type="email"
                     size="small"
+                    {...register("patient.email")}
                   />
                 </Grid>
                 <Grid item md={6}>
@@ -74,6 +95,7 @@ const RegisterPage = () => {
                     label="Password"
                     type="password"
                     size="small"
+                    {...register("password")}
                   />
                 </Grid>
                 <Grid item md={6}>
@@ -82,6 +104,7 @@ const RegisterPage = () => {
                     label="Contact Number"
                     type="tel"
                     size="small"
+                    {...register("patient.contactNumber")}
                   />
                 </Grid>
                 <Grid item md={6}>
@@ -90,10 +113,13 @@ const RegisterPage = () => {
                     label="Address"
                     type="text"
                     size="small"
+                    {...register("patient.address")}
                   />
                 </Grid>
               </Grid>
-              <Button fullWidth={true}>REGISTER</Button>
+              <Button type="submit" fullWidth={true}>
+                REGISTER
+              </Button>
               <Typography fontWeight={400} color="gray">
                 Do you already have an account?{" "}
                 <Link href="/login" className="text-blue-400 font-semibold">
