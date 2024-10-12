@@ -41,14 +41,14 @@ const RegisterPage = () => {
     try {
       const res = await registerPatient(patientData);
       if (res.success) {
-        setLoading(false);
         toast.success(res?.message);
         router.push("/login");
       }
     } catch (error) {
       toast.error(error?.message);
-      setLoading(false);
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 

@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Box,
   Button,
@@ -10,8 +12,37 @@ import {
 import assets from "@/assets";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { LoadingButton } from "@mui/lab";
+import { loginUser } from "@/services/actions/loginUser";
+import { toast } from "sonner";
 
 const LoginPage = () => {
+  interface IUserLoginPayload {
+    email: string;
+    password: string;
+  }
+  const [loading, setLoading] = useState(false);
+
+  const { register, handleSubmit, watch } = useForm<IUserLoginPayload>();
+
+  const handleLoginUser: SubmitHandler<IUserLoginPayload> = async (values) => {
+    setLoading(true);
+    try {
+      const res = await loginUser(values);
+      console.log(res);
+      if (res.success) {
+        toast.success(res?.message);
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error(error?.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <Container>
       <Stack
@@ -30,7 +61,7 @@ const LoginPage = () => {
             borderRadius: 1,
           }}
         >
-          <form>
+          <form onSubmit={handleSubmit(handleLoginUser)}>
             <Stack
               sx={{
                 justifyContent: "center",
@@ -58,6 +89,9 @@ const LoginPage = () => {
                     label="Email"
                     type="email"
                     size="small"
+                    {...register("email", {
+                      required: true,
+                    })}
                   />
                 </Grid>
                 <Grid item md={6}>
@@ -66,6 +100,9 @@ const LoginPage = () => {
                     label="Password"
                     type="password"
                     size="small"
+                    {...register("password", {
+                      required: true,
+                    })}
                   />
                 </Grid>
               </Grid>
@@ -79,7 +116,16 @@ const LoginPage = () => {
                   Forgot Password?
                 </Link>
               </Box>
-              <Button fullWidth={true}>LOGIN</Button>
+              {loading ? (
+                <LoadingButton loading fullWidth={true} variant="outlined">
+                  Submit
+                </LoadingButton>
+              ) : (
+                <Button type="submit" fullWidth={true}>
+                  LOGIN
+                </Button>
+              )}
+
               <Typography fontWeight={400} color="gray">
                 Don&apos;t have an account?{" "}
                 <Link href="/register" className="text-blue-400 font-semibold">
