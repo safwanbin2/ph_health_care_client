@@ -34,7 +34,116 @@ const HowItWorks = () => {
           </Typography>
         </Box>
         <HowItWorksGrid />
-        <Box>3</Box>
+        <Box
+          sx={{
+            background:
+              "linear-gradient(90deg, rgba(21,8,222,1) 0%, rgba(138,138,246,1) 49%, rgba(0,212,255,1) 100%)",
+            p: 6,
+            borderRadius: 5,
+            display: "flex",
+          }}
+        >
+          <Box
+            sx={{
+              textAlign: "center",
+              flex: 1,
+            }}
+          >
+            <Typography
+              sx={{
+                color: "white",
+                fontSize: 30,
+                fontWeight: 600,
+              }}
+            >
+              180+
+            </Typography>
+            <Typography
+              sx={{
+                color: "white",
+                fontSize: 18,
+                fontWeight: 500,
+              }}
+            >
+              Expert Doctors
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              textAlign: "center",
+              flex: 1,
+            }}
+          >
+            <Typography
+              sx={{
+                color: "white",
+                fontSize: 30,
+                fontWeight: 600,
+              }}
+            >
+              26+
+            </Typography>
+            <Typography
+              sx={{
+                color: "white",
+                fontSize: 18,
+                fontWeight: 500,
+              }}
+            >
+              Expert Services
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              textAlign: "center",
+              flex: 1,
+            }}
+          >
+            <Typography
+              sx={{
+                color: "white",
+                fontSize: 30,
+                fontWeight: 600,
+              }}
+            >
+              10K+
+            </Typography>
+            <Typography
+              sx={{
+                color: "white",
+                fontSize: 18,
+                fontWeight: 500,
+              }}
+            >
+              Happy Patients
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              textAlign: "center",
+              flex: 1,
+            }}
+          >
+            <Typography
+              sx={{
+                color: "white",
+                fontSize: 30,
+                fontWeight: 600,
+              }}
+            >
+              150+
+            </Typography>
+            <Typography
+              sx={{
+                color: "white",
+                fontSize: 18,
+                fontWeight: 500,
+              }}
+            >
+              Best Award Winners
+            </Typography>
+          </Box>
+        </Box>
       </Container>
     </>
   );
