@@ -17,8 +17,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { LoadingButton } from "@mui/lab";
 import { loginUser } from "@/services/actions/loginUser";
 import { toast } from "sonner";
-import { storeUserInfo } from "@/services/storeUserInfo";
 import { useRouter } from "next/navigation";
+import { storeUserInfo } from "@/services/auth.service";
 
 const LoginPage = () => {
   interface IUserLoginPayload {
