@@ -42,7 +42,7 @@ const LoginPage = () => {
         storeUserInfo(res?.data?.accessToken);
         router.push("/");
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
       toast.error(error?.message);
     } finally {
