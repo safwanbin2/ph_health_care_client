@@ -1,5 +1,6 @@
 "use client";
 
+import { useGetMyProfileQuery } from "@/redux/api/auth/auth.api";
 // import AuthButton from "@/components/ui/AuthButton/AuthButton";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import dynamic from "next/dynamic";
