@@ -3,10 +3,12 @@
 import { getUserInfo, removeUser } from "@/services/auth.service";
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 const Navbar = () => {
   const userInfo = getUserInfo();
+  const router = useRouter();
   return (
     <Container>
       <Stack
@@ -33,6 +35,7 @@ const Navbar = () => {
           <Button
             onClick={() => {
               removeUser();
+              router.refresh();
               return toast.success("Logged out successfully");
             }}
             variant="outlined"

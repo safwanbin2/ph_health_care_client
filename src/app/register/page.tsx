@@ -19,6 +19,8 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { LoadingButton } from "@mui/lab";
+import { loginUser } from "@/services/actions/loginUser";
+import { storeUserInfo } from "@/services/auth.service";
 
 const RegisterPage = () => {
   const router = useRouter();
@@ -42,7 +44,14 @@ const RegisterPage = () => {
       const res = await registerPatient(patientData);
       if (res.success) {
         toast.success(res?.message);
-        router.push("/login");
+        const result = await loginUser({
+          email: values.patient.email,
+          password: values.password,
+        });
+        if (result.success) {
+          storeUserInfo(result?.data?.accessToken);
+          router.push("/");
+        }
       }
     } catch (error) {
       toast.error(error?.message);
