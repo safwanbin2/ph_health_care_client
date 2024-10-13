@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import assets from "@/assets";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,6 +23,7 @@ export const logInValidationSchema = z.object({
 
 const LoginPage = () => {
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
   const handleLoginUser = async (values: FieldValues) => {
@@ -41,6 +34,8 @@ const LoginPage = () => {
         toast.success(res?.message);
         storeUserInfo(res?.data?.accessToken);
         router.push("/");
+      } else {
+        setErrorMessage(res?.message);
       }
     } catch (error: any) {
       console.error(error);
@@ -96,6 +91,24 @@ const LoginPage = () => {
                   Login PH HealthCare
                 </Typography>
               </Box>
+              {errorMessage && (
+                <Box
+                  sx={{
+                    borderBottom: "2px solid red",
+                    px: 1,
+                  }}
+                >
+                  <Typography
+                    component="p"
+                    sx={{
+                      color: "red",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {errorMessage}
+                  </Typography>
+                </Box>
+              )}
               <Grid container spacing={3}>
                 <Grid item md={6}>
                   <PHInput
