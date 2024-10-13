@@ -90,6 +90,7 @@ const LoginPage = () => {
                     label="Email"
                     type="email"
                     size="small"
+                    required={true}
                   />
                 </Grid>
                 <Grid item md={6}>
@@ -99,6 +100,7 @@ const LoginPage = () => {
                     label="Password"
                     type="password"
                     size="small"
+                    required={true}
                   />
                 </Grid>
               </Grid>

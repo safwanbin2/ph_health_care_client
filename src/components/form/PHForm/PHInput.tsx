@@ -8,6 +8,8 @@ type TInputProps = {
   label?: string;
   type?: string;
   size?: "small" | "medium";
+  placeholder?: string;
+  required: boolean;
 };
 
 const PHInput = ({
@@ -16,6 +18,8 @@ const PHInput = ({
   label,
   type = "text",
   size = "small",
+  required,
+  placeholder,
 }: TInputProps) => {
   const { control } = useFormContext();
   return (
@@ -29,6 +33,9 @@ const PHInput = ({
           label={label}
           type={type}
           size={size}
+          variant="outlined"
+          placeholder={placeholder || label}
+          required={required}
         />
       )}
     />

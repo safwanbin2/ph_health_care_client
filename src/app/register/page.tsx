@@ -94,7 +94,12 @@ const RegisterPage = () => {
               </Box>
               <Grid container spacing={3}>
                 <Grid item md={12}>
-                  <PHInput name="patient.name" label="Name" fullWidth={true} />
+                  <PHInput
+                    name="patient.name"
+                    label="Name"
+                    fullWidth={true}
+                    required={true}
+                  />
                 </Grid>
                 <Grid item md={6}>
                   <PHInput
@@ -102,6 +107,7 @@ const RegisterPage = () => {
                     label="Email"
                     type="email"
                     name="patient.email"
+                    required={true}
                   />
                 </Grid>
                 <Grid item md={6}>
@@ -111,6 +117,7 @@ const RegisterPage = () => {
                     type="password"
                     size="small"
                     name="password"
+                    required={true}
                   />
                 </Grid>
                 <Grid item md={6}>
@@ -119,6 +126,7 @@ const RegisterPage = () => {
                     label="Contact Number"
                     type="tel"
                     name="patient.contactNumber"
+                    required={true}
                   />
                 </Grid>
                 <Grid item md={6}>
@@ -127,6 +135,7 @@ const RegisterPage = () => {
                     label="Address"
                     size="small"
                     name="patient.address"
+                    required={true}
                   />
                 </Grid>
               </Grid>
