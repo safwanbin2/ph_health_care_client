@@ -56,7 +56,7 @@ const RegisterPage = () => {
         });
         if (result.success) {
           storeUserInfo(result?.data?.accessToken);
-          router.push("/");
+          router.push("/dashboard");
         }
       }
     } catch (error: any) {
