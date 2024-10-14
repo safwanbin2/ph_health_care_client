@@ -45,3 +45,11 @@ export type TDoctor = {
 };
 
 export type TUserRole = keyof typeof USER_ROLE;
+
+export interface TDrawerItems {
+  title: string;
+  path: string;
+  parentPath?: string;
+  icon: any;
+  child?: TDrawerItems[];
+}

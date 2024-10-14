@@ -14,8 +14,12 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import Image from "next/image";
 import assets from "@/assets";
 import Link from "next/link";
+import { drawerItems } from "@/utils/drawerItems";
+import { USER_ROLE } from "@/constants";
+import { getUserInfo } from "@/services/auth.service";
 
 const Sidebar = () => {
+  const userInfo = getUserInfo();
   const drawer = (
     <div>
       <Toolbar>
@@ -45,13 +49,18 @@ const Sidebar = () => {
       </Toolbar>
       <Divider />
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        {drawerItems(userInfo.role).map((item, index) => (
+          <ListItem
+            component={Link}
+            href={item.path}
+            key={index}
+            disablePadding
+          >
             <ListItemButton>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={item.title} />
             </ListItemButton>
           </ListItem>
         ))}
