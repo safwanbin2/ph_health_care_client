@@ -10,18 +10,17 @@ import {
   Typography,
 } from "@mui/material";
 import MailIcon from "@mui/icons-material/Mail";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import Image from "next/image";
 import assets from "@/assets";
 import Link from "next/link";
 import { drawerItems } from "@/utils/drawerItems";
-import { USER_ROLE } from "@/constants";
 import { getUserInfo } from "@/services/auth.service";
 
 const Sidebar = () => {
   const userInfo = getUserInfo();
-  const drawer = (
-    <div>
+
+  return (
+    <Box>
       <Toolbar>
         <Box
           sx={{
@@ -58,17 +57,15 @@ const Sidebar = () => {
           >
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <MailIcon />
               </ListItemIcon>
               <ListItemText primary={item.title} />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
-    </div>
+    </Box>
   );
-
-  return <Box>{drawer}</Box>;
 };
 
 export default Sidebar;
