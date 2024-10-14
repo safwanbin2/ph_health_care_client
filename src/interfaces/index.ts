@@ -1,3 +1,5 @@
+import { USER_ROLE } from "@/constants";
+
 export type TSpecialty = {
   id: string;
   title: string;
@@ -41,3 +43,5 @@ export type TDoctor = {
   prescription?: {};
   review?: [];
 };
+
+export type TUserRole = keyof typeof USER_ROLE;

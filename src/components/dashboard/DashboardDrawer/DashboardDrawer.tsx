@@ -40,6 +40,9 @@ const DashboardDrawer = ({ children }: { children: React.ReactNode }) => {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
+          bgcolor: "#F4F7F6",
+          boxShadow: 0,
+          borderBottom: "1px solid lightgray",
         }}
       >
         <Toolbar>
@@ -48,13 +51,33 @@ const DashboardDrawer = ({ children }: { children: React.ReactNode }) => {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
+            sx={{
+              mr: 2,
+              display: { sm: "none" },
+              color: "primary.main",
+            }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Responsive drawer
-          </Typography>
+          <Box>
+            <Typography
+              component="h6"
+              sx={{
+                fontSize: 14,
+              }}
+            >
+              Hi, Safwan Bin Ridwan
+            </Typography>
+            <Typography
+              component="h6"
+              sx={{
+                fontSize: 14,
+                color: "primary.main",
+              }}
+            >
+              Welcome to PH HealthCare
+            </Typography>
+          </Box>
         </Toolbar>
       </AppBar>
       <Box
