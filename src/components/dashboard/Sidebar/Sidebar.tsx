@@ -1,20 +1,10 @@
-import {
-  Box,
-  Divider,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Toolbar,
-  Typography,
-} from "@mui/material";
-import MailIcon from "@mui/icons-material/Mail";
+import { Box, Divider, List, Toolbar, Typography } from "@mui/material";
 import Image from "next/image";
 import assets from "@/assets";
 import Link from "next/link";
 import { drawerItems } from "@/utils/drawerItems";
 import { getUserInfo } from "@/services/auth.service";
+import SidebarItem from "./SidebarItem";
 
 const Sidebar = () => {
   const userInfo = getUserInfo();
@@ -49,19 +39,7 @@ const Sidebar = () => {
       <Divider />
       <List>
         {drawerItems(userInfo.role).map((item, index) => (
-          <ListItem
-            component={Link}
-            href={item.path}
-            key={index}
-            disablePadding
-          >
-            <ListItemButton>
-              <ListItemIcon>
-                <MailIcon />
-              </ListItemIcon>
-              <ListItemText primary={item.title} />
-            </ListItemButton>
-          </ListItem>
+          <SidebarItem item={item} key={index} />
         ))}
       </List>
     </Box>
