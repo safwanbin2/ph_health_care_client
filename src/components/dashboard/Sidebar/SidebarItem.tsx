@@ -21,9 +21,13 @@ const SidebarItem = ({
       sx={{
         ...(linkPath === currentPath
           ? {
-              borderLeft: "3px solid #0D92F4",
+              borderRight: "3px solid #0D92F4",
+              "& svg": {
+                color: "#0D92F4",
+              },
             }
           : {}),
+        mb: 1,
       }}
       component={Link}
       href={linkPath}

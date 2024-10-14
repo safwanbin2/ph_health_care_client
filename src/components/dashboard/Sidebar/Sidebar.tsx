@@ -36,7 +36,7 @@ const Sidebar = () => {
           </Typography>
         </Box>
       </Toolbar>
-      <Divider />
+      {/* <Divider /> */}
       <List>
         {drawerItems(userInfo.role).map((item, index) => (
           <SidebarItem item={item} key={index} />
