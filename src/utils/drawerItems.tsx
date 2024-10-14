@@ -20,7 +20,7 @@ export const drawerItems = (role: TUserRole): TDrawerItems[] => {
   const defaultitems: TDrawerItems[] = [
     {
       title: "profile",
-      path: `${role}/profile`,
+      path: `profile`,
       icon: PersonIcon,
     },
 
