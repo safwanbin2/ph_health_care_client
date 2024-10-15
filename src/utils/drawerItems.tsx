@@ -96,7 +96,7 @@ export const drawerItems = (role: TUserRole): TDrawerItems[] => {
         },
         {
           title: "Appointments",
-          path: `${role}/appointment`,
+          path: `${role}/appointments`,
           icon: BookOnlineIcon,
         }
       );
