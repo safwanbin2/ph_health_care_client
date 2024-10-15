@@ -17,6 +17,11 @@ export const getUserInfo = () => {
   };
 };
 
+export const getToken = (key: string) => {
+  const token = localStorage.getItem(key);
+  return token;
+};
+
 export const isLoggedIn = () => {
   const token = localStorage.getItem("accessToken");
   return !!token;
