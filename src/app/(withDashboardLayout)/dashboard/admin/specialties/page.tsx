@@ -17,7 +17,6 @@ import {
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Image from "next/image";
-import { TResponse } from "@/interfaces";
 import { toast } from "sonner";
 
 const SpecialtiesPage = () => {
