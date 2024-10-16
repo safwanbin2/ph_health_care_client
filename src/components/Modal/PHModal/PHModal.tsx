@@ -21,13 +21,20 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 type TProps = {
+  children: React.ReactNode;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   title: string;
   sx?: SxProps;
 };
 
-const PHModal = ({ open, setOpen, title, sx }: TProps) => {
+const PHModal = ({
+  children,
+  open = false,
+  setOpen,
+  title = "",
+  sx,
+}: TProps) => {
   const handleClose = () => {
     setOpen(false);
   };
@@ -55,9 +62,7 @@ const PHModal = ({ open, setOpen, title, sx }: TProps) => {
         >
           <CloseIcon />
         </IconButton>
-        <DialogContent dividers>
-          <TextField />
-        </DialogContent>
+        <DialogContent dividers>{children}</DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose}>
             Save changes
