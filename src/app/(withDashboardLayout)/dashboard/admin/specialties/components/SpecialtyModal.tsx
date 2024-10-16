@@ -44,7 +44,7 @@ const SpecialtyModal = ({ open, setOpen }: TProps) => {
       <PHModal open={open} setOpen={setOpen} title="Create New Speciality">
         <PHForm
           onSubmit={handleFormSubmit}
-          resolver={zodResolver(createSpecialtyValidationSchema)}
+          // resolver={zodResolver(createSpecialtyValidationSchema)}
         >
           <Grid container spacing={2}>
             <Grid item md={6}>
