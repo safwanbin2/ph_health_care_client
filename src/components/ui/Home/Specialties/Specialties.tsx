@@ -30,12 +30,13 @@ const Specialties = async () => {
               Find experienced doctors across all specialties
             </Typography>
           </Box>
-          <Stack direction="row" gap={4}>
-            {specialties?.data?.length &&
-              specialties?.data.map((specialty) => (
-                <SpecialtyCard key={specialty.id} specialty={specialty} />
+          {specialties?.data?.length && (
+            <Stack direction="row" gap={4}>
+              {specialties?.data?.slice(0, 6)?.map((specialty) => (
+                <SpecialtyCard key={specialty?.id} specialty={specialty} />
               ))}
-          </Stack>
+            </Stack>
+          )}
           <Box
             sx={{
               textAlign: "center",

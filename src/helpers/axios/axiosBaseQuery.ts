@@ -17,7 +17,7 @@ export const axiosBaseQuery =
         limit: number;
         total: number;
       };
-      contentType: string;
+      contentType?: string;
     },
     unknown,
     unknown

@@ -4,7 +4,7 @@ import Image from "next/image";
 import React from "react";
 
 const SpecialtyCard = ({ specialty }: { specialty: TSpecialty }) => {
-  const { id, title, icon } = specialty;
+  const { id, title, icon } = specialty ?? {};
   return (
     <Box
       sx={{

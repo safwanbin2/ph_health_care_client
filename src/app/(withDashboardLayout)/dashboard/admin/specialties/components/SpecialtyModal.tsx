@@ -18,7 +18,6 @@ type TProps = {
 
 const createSpecialtyValidationSchema = z.object({
   title: z.string().min(1, "Title can not be empty"),
-  file: z.object({}),
 });
 
 const SpecialtyModal = ({ open, setOpen }: TProps) => {
@@ -26,13 +25,18 @@ const SpecialtyModal = ({ open, setOpen }: TProps) => {
   const handleFormSubmit = async (values: FieldValues) => {
     const formData = modifyPayload(values);
     try {
-      const res = await createSpecialty(formData).unwrap();
-      if (res.id) {
-        toast.success("Specialty created successfully");
+      const { data, message, success } = await createSpecialty(
+        formData
+      ).unwrap();
+      if (success) {
+        toast.success(message);
         setOpen(false);
+      } else {
+        throw new Error(message);
       }
     } catch (error) {
       console.log(error);
+      toast.error(error.message);
     }
   };
   return (
@@ -41,10 +45,6 @@ const SpecialtyModal = ({ open, setOpen }: TProps) => {
         <PHForm
           onSubmit={handleFormSubmit}
           resolver={zodResolver(createSpecialtyValidationSchema)}
-          defaultValues={{
-            title: "",
-            file: "",
-          }}
         >
           <Grid container spacing={2}>
             <Grid item md={6}>
@@ -57,7 +57,11 @@ const SpecialtyModal = ({ open, setOpen }: TProps) => {
               />
             </Grid>
             <Grid item md={6}>
-              <PHFileUploader name="file" label="Upload an icon" />
+              <PHFileUploader
+                name="file"
+                label="Upload an icon"
+                required={true}
+              />
             </Grid>
             <Button
               type="submit"

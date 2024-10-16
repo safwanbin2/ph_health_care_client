@@ -1,14 +1,25 @@
 "use client";
 
-import { Box, Button, Stack, TextField } from "@mui/material";
+import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import SpecialtyModal from "./components/SpecialtyModal";
 import React from "react";
+import { useGetAllSpecialtiesQuery } from "@/redux/api/specialty.api";
 
 const SpecialtiesPage = () => {
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);
+
+  const { data, isLoading } = useGetAllSpecialtiesQuery({});
+  console.log(data);
+
   return (
     <>
-      <Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
+        }}
+      >
         <Stack
           direction="row"
           justifyContent="space-between"
@@ -20,6 +31,9 @@ const SpecialtiesPage = () => {
             <TextField size="small" placeholder="Search specialty" />
           </Box>
         </Stack>
+        <Box>
+          <Typography>All Specialties:</Typography>
+        </Box>
       </Box>
     </>
   );

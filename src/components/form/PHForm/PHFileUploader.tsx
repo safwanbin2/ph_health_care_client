@@ -20,10 +20,11 @@ const VisuallyHiddenInput = styled("input")({
 type TProps = {
   name: string;
   label?: string;
+  required: boolean;
   sx?: SxProps;
 };
 
-export default function PHFileUploader({ name, label, sx }: TProps) {
+export default function PHFileUploader({ name, label, required, sx }: TProps) {
   const { control } = useFormContext();
   return (
     <Controller
@@ -57,6 +58,7 @@ export default function PHFileUploader({ name, label, sx }: TProps) {
             sx={{
               display: "none",
             }}
+            required={required}
           />
         </Button>
       )}
