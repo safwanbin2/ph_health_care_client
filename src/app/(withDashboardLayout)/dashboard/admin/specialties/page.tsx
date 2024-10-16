@@ -1,22 +1,40 @@
 "use client";
 
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import SpecialtyModal from "./components/SpecialtyModal";
 import React from "react";
 import { useGetAllSpecialtiesQuery } from "@/redux/api/specialty.api";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import DeleteIcon from "@mui/icons-material/Delete";
 import Image from "next/image";
 
 const SpecialtiesPage = () => {
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);
 
   const { data, isLoading } = useGetAllSpecialtiesQuery({});
+
+  const handleDeleteSpecialty = (id: string) => {
+    const consent = window.confirm(
+      "Are you sure your want to delete the specialty"
+    );
+    if (consent) {
+      console.log(id);
+    }
+  };
+
   const columns: GridColDef<(typeof data.data)[number]>[] = [
-    { field: "title", headerName: "Title", width: 200 },
+    { field: "title", headerName: "Title", width: 300 },
     {
       field: "icon",
       headerName: "Icon",
-      width: 100,
+      width: 300,
       renderCell: ({ row }) => {
         // this is going to show image
         return (
@@ -26,11 +44,26 @@ const SpecialtiesPage = () => {
               height: "100%",
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
             }}
           >
             <Image src={row.icon} width={30} height={30} alt="icon" />
           </Box>
+        );
+      },
+    },
+    {
+      field: "Action",
+      headerName: "action",
+      width: 400,
+      renderCell: ({ row }) => {
+        // this is going to show image
+        return (
+          <IconButton
+            onClick={() => handleDeleteSpecialty(row.id)}
+            aria-label="delete"
+          >
+            <DeleteIcon />
+          </IconButton>
         );
       },
     },
