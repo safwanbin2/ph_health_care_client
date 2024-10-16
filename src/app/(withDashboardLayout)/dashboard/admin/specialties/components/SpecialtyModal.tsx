@@ -1,8 +1,11 @@
+"use client";
+
 import PHFileUploader from "@/components/form/PHForm/PHFileUploader";
 import PHForm from "@/components/form/PHForm/PHForm";
 import PHInput from "@/components/form/PHForm/PHInput";
 import PHModal from "@/components/Modal/PHModal/PHModal";
-import { Button, Grid, TextField } from "@mui/material";
+import { modifyPayload } from "@/utils/modifyPayload";
+import { Button, Grid } from "@mui/material";
 import React, { Dispatch } from "react";
 import { FieldValues } from "react-hook-form";
 
@@ -13,7 +16,7 @@ type TProps = {
 
 const SpecialtyModal = ({ open, setOpen }: TProps) => {
   const handleFormSubmit = (values: FieldValues) => {
-    console.log(values);
+    const formData = modifyPayload(values);
   };
   return (
     <>
