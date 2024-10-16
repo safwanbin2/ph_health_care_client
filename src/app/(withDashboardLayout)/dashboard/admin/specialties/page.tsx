@@ -30,11 +30,12 @@ const SpecialtiesPage = () => {
   };
 
   const columns: GridColDef<(typeof data.data)[number]>[] = [
-    { field: "title", headerName: "Title", width: 300 },
+    { field: "title", headerName: "Title", width: 400 },
     {
       field: "icon",
       headerName: "Icon",
-      width: 300,
+      flex: 1,
+
       renderCell: ({ row }) => {
         // this is going to show image
         return (
@@ -54,7 +55,9 @@ const SpecialtiesPage = () => {
     {
       field: "Action",
       headerName: "action",
-      width: 400,
+      flex: 1,
+      headerAlign: "center",
+      align: "center",
       renderCell: ({ row }) => {
         // this is going to show image
         return (
