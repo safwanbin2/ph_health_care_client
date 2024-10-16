@@ -29,14 +29,22 @@ export default function PHFileUploader({ name, label, sx }: TProps) {
     <Controller
       control={control}
       name={name}
-      render={({ field: { onChange, value, ...field } }) => (
+      render={({
+        field: { onChange, value, ...field },
+        fieldState: { error },
+      }) => (
         <Button
           component="label"
           role={undefined}
           variant="contained"
           tabIndex={-1}
           startIcon={<CloudUploadIcon />}
-          sx={{ ...sx }}
+          sx={{
+            ...sx,
+            ...(!!error?.message && {
+              borderColor: "red",
+            }),
+          }}
         >
           {label || "Upload a file"}
           <Input
