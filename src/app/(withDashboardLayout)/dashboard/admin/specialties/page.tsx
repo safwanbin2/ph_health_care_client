@@ -10,22 +10,32 @@ import {
 } from "@mui/material";
 import SpecialtyModal from "./components/SpecialtyModal";
 import React from "react";
-import { useGetAllSpecialtiesQuery } from "@/redux/api/specialty.api";
+import {
+  useDeleteSpecialtyMutation,
+  useGetAllSpecialtiesQuery,
+} from "@/redux/api/specialty.api";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Image from "next/image";
+import { TResponse } from "@/interfaces";
+import { toast } from "sonner";
 
 const SpecialtiesPage = () => {
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);
 
   const { data, isLoading } = useGetAllSpecialtiesQuery({});
+  const [deleteSpecialty] = useDeleteSpecialtyMutation();
 
-  const handleDeleteSpecialty = (id: string) => {
+  const handleDeleteSpecialty = async (id: string) => {
     const consent = window.confirm(
       "Are you sure your want to delete the specialty"
     );
-    if (consent) {
-      console.log(id);
+    if (!consent) return;
+    const res = await deleteSpecialty(id).unwrap();
+    if (res.success) {
+      toast.success(res.message);
+    } else {
+      toast.error(res.message);
     }
   };
 
