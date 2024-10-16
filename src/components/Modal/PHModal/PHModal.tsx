@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Button from "@mui/material/Button";
-import { styled } from "@mui/material/styles";
+import { styled, SxProps } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -24,9 +24,10 @@ type TProps = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   title: string;
+  sx?: SxProps;
 };
 
-const PHModal = ({ open, setOpen, title }: TProps) => {
+const PHModal = ({ open, setOpen, title, sx }: TProps) => {
   const handleClose = () => {
     setOpen(false);
   };
@@ -37,6 +38,7 @@ const PHModal = ({ open, setOpen, title }: TProps) => {
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
+        sx={{ ...sx }}
       >
         <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
           {title}
