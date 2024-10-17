@@ -1,5 +1,6 @@
 import PHForm from "@/components/form/PHForm/PHForm";
 import PHInput from "@/components/form/PHForm/PHInput";
+import PHSelectInput from "@/components/form/PHForm/PHSelectInput";
 import PHFullScreenModal from "@/components/Modal/PHModal/PHFullScreenModal";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Padding } from "@mui/icons-material";
@@ -151,11 +152,12 @@ const CreateDoctorModal = ({ open, setOpen }: TProps) => {
               />
             </Grid>
             <Grid item lg={4} md={6} sm={12}>
-              <PHInput
+              <PHSelectInput
                 name="doctor.gender"
                 label="Gender"
                 size="small"
-                fullWidth
+                fullWidth={true}
+                items={["MALE", "FEMALE"]}
               />
             </Grid>
             <Grid item lg={4} md={6} sm={12}>
