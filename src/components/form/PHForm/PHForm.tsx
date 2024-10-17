@@ -1,5 +1,6 @@
 "use client";
 
+import { SxProps } from "@mui/material";
 import { ReactNode } from "react";
 import {
   FieldValues,
