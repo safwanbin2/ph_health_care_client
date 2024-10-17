@@ -1,12 +1,17 @@
+"use client";
+
 import PHForm from "@/components/form/PHForm/PHForm";
 import PHInput from "@/components/form/PHForm/PHInput";
 import PHSelectInput from "@/components/form/PHForm/PHSelectInput";
 import PHFullScreenModal from "@/components/Modal/PHModal/PHFullScreenModal";
+import { useCreateDoctorMutation } from "@/redux/api/doctor.api";
+import { modifyPayload } from "@/utils/modifyPayload";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Padding } from "@mui/icons-material";
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import { FieldValues } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 export const createDoctorValidationSchema = z.object({
@@ -19,13 +24,13 @@ export const createDoctorValidationSchema = z.object({
       .min(11, "Can not be less than 11 character")
       .max(11, "Can not be more than 11 character"),
     address: z.string().min(1, "Enter an address"),
-    apointmentFee: z.number().min(1, "Enter a valid amount"),
+    apointmentFee: z.string().min(1, "Enter a valid amount"),
     currentWorkingPlace: z.string().min(1, "Enter a valid working place"),
     designation: z.string().min(1, "Enter a valid designation"),
     registrationNumber: z.string().min(1, "Enter a valid registration number"),
     qualification: z.string().min(1, "Enter a valid qualification"),
     gender: z.enum(["MALE", "FEMALE"], { message: "Enter a valid gender" }),
-    experience: z.number().min(-1, "Enter valid experince"),
+    experience: z.string().min(1, "Enter valid experince"),
   }),
 });
 
@@ -52,8 +57,19 @@ type TProps = {
 };
 
 const CreateDoctorModal = ({ open, setOpen }: TProps) => {
-  const handleCreateDoctor = (values: FieldValues) => {
-    console.log(values);
+  const [createDoctor] = useCreateDoctorMutation();
+  const handleCreateDoctor = async (values: FieldValues) => {
+    values.doctor.apointmentFee = Number(values?.doctor?.apointmentFee);
+    values.doctor.experience = Number(values?.doctor?.experience);
+
+    const data = modifyPayload(values);
+    try {
+      const res = await createDoctor(data).unwrap();
+      if (!res?.success) throw new Error(res?.message);
+      toast.success(res?.message);
+    } catch (error) {
+      toast.error(error?.message || "Something went wrong!");
+    }
   };
 
   return (
@@ -130,7 +146,7 @@ const CreateDoctorModal = ({ open, setOpen }: TProps) => {
             <Grid item lg={4} md={6} sm={12}>
               <PHInput
                 name="doctor.designation"
-                label="designation"
+                label="Designation"
                 size="small"
                 fullWidth
               />
