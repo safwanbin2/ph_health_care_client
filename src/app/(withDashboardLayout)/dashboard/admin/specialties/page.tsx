@@ -107,7 +107,7 @@ const SpecialtiesPage = () => {
           <Box>
             <Typography mb={2}>All Specialties:</Typography>
             <Box sx={{ height: 400, width: "100%" }}>
-              <DataGrid rows={data.data} columns={columns} />
+              <DataGrid rows={data.data} columns={columns} hideFooter={true} />
             </Box>
           </Box>
         )}

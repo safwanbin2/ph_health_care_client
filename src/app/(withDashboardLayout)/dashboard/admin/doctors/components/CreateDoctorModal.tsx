@@ -68,7 +68,7 @@ const CreateDoctorModal = ({ open, setOpen }: TProps) => {
       if (!res?.success) throw new Error(res?.message);
       setOpen(false);
       toast.success(res?.message);
-    } catch (error) {
+    } catch (error: any) {
       toast.error(error?.message || "Something went wrong!");
     }
   };
