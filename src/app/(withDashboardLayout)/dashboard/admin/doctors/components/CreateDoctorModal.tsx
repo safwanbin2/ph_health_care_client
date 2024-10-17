@@ -66,6 +66,7 @@ const CreateDoctorModal = ({ open, setOpen }: TProps) => {
     try {
       const res = await createDoctor(data).unwrap();
       if (!res?.success) throw new Error(res?.message);
+      setOpen(false);
       toast.success(res?.message);
     } catch (error) {
       toast.error(error?.message || "Something went wrong!");
