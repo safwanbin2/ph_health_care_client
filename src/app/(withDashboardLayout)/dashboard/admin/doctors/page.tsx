@@ -29,6 +29,10 @@ const DoctorsPage = () => {
 
   const columns: GridColDef<(typeof data.data)[number]>[] = [
     { field: "name", headerName: "Name", flex: 1 },
+    { field: "email", headerName: "Email", flex: 1 },
+    { field: "contactNumber", headerName: "Contact Number", flex: 1 },
+    { field: "gender", headerName: "Gender", flex: 1 },
+    { field: "apointmentFee", headerName: "Appointment Fee", flex: 1 },
 
     {
       field: "Action",
@@ -51,7 +55,13 @@ const DoctorsPage = () => {
   ];
 
   return (
-    <Box>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 2,
+      }}
+    >
       <Stack direction="row" justifyContent="space-between">
         <Button onClick={() => setModalOpen(true)}>Create Doctor</Button>
         <CreateDoctorModal open={modalOpen} setOpen={setModalOpen} />
