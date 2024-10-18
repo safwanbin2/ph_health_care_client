@@ -17,18 +17,8 @@ import { useDebounce } from "@/redux/hooks";
 
 const DoctorsPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const query: Record<string, any> = {};
-  const [searchTerm, setSearchTerm] = useState("");
-  const debounceSearchTerm = useDebounce({
-    searchTerm: searchTerm,
-    delay: 600,
-  });
 
-  if (!!debounceSearchTerm) {
-    query["searchTerm"] = debounceSearchTerm;
-  }
-
-  const { data, isLoading } = useGetAllDoctorsQuery({ ...query });
+  const { data, isLoading } = useGetAllDoctorsQuery({});
 
   const handleDeleteSpecialty = async (id: string) => {
     const consent = window.confirm(
@@ -81,7 +71,6 @@ const DoctorsPage = () => {
             variant="outlined"
             size="small"
             placeholder="Search doctor name"
-            onChange={(e) => setSearchTerm(e.target.value)}
           />
         </Box>
       </Stack>
