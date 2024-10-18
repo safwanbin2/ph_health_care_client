@@ -12,7 +12,15 @@ const doctorApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.doctors],
     }),
+    getAllDoctors: build.query({
+      query: (args: Record<string, any>) => ({
+        url: "/doctor",
+        method: "GET",
+        params: args,
+      }),
+      providesTags: [tagTypes.doctors],
+    }),
   }),
 });
 
-export const { useCreateDoctorMutation } = doctorApi;
+export const { useCreateDoctorMutation, useGetAllDoctorsQuery } = doctorApi;

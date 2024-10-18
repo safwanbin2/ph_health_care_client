@@ -1,11 +1,55 @@
 "use client";
 
-import { Box, Button, Stack, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import CreateDoctorModal from "./components/CreateDoctorModal";
 import { useState } from "react";
+import { useGetAllDoctorsQuery } from "@/redux/api/doctor.api";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const DoctorsPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
+
+  const { data, isLoading } = useGetAllDoctorsQuery({});
+
+  const handleDeleteSpecialty = async (id: string) => {
+    const consent = window.confirm(
+      "Are you sure your want to delete the specialty"
+    );
+    if (!consent) return;
+    console.log(id);
+  };
+
+  const columns: GridColDef<(typeof data.data)[number]>[] = [
+    { field: "name", headerName: "Name", flex: 1 },
+
+    {
+      field: "Action",
+      headerName: "action",
+      flex: 1,
+      headerAlign: "center",
+      align: "center",
+      renderCell: ({ row }) => {
+        // this is going to show image
+        return (
+          <IconButton
+            onClick={() => handleDeleteSpecialty(row.id)}
+            aria-label="delete"
+          >
+            <DeleteIcon />
+          </IconButton>
+        );
+      },
+    },
+  ];
+
   return (
     <Box>
       <Stack direction="row" justifyContent="space-between">
@@ -19,6 +63,16 @@ const DoctorsPage = () => {
           />
         </Box>
       </Stack>
+      {isLoading ? (
+        <h2>Loading......</h2>
+      ) : (
+        <Box>
+          <Typography mb={2}>All Doctors:</Typography>
+          <Box sx={{ height: 400, width: "100%" }}>
+            <DataGrid rows={data.data} columns={columns} />
+          </Box>
+        </Box>
+      )}
     </Box>
   );
 };
