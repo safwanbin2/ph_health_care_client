@@ -10,10 +10,14 @@ import {
 } from "@mui/material";
 import CreateDoctorModal from "./components/CreateDoctorModal";
 import { useState } from "react";
-import { useGetAllDoctorsQuery } from "@/redux/api/doctor.api";
+import {
+  useDeleteDoctorMutation,
+  useGetAllDoctorsQuery,
+} from "@/redux/api/doctor.api";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDebounce } from "@/redux/hooks";
+import { toast } from "sonner";
 
 const DoctorsPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -28,13 +32,21 @@ const DoctorsPage = () => {
   }
 
   const { data, isLoading } = useGetAllDoctorsQuery({ ...query });
+  const [deleteDoctor] = useDeleteDoctorMutation();
 
   const handleDeleteSpecialty = async (id: string) => {
     const consent = window.confirm(
       "Are you sure your want to delete the specialty"
     );
     if (!consent) return;
-    console.log(id);
+    try {
+      const res = await deleteDoctor(id).unwrap();
+      if (!res.success) throw new Error(res?.message);
+      toast.success(res?.message);
+    } catch (error: any) {
+      toast.error(error?.message || "Something went wrong!");
+      console.log(error);
+    }
   };
 
   const columns: GridColDef<(typeof data.data)[number]>[] = [
